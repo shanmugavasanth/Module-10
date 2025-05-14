@@ -3,7 +3,8 @@
 This project demonstrates the implementation of a **Circular Queue** in Python. The queue accepts 3 user values, performs enqueue and dequeue operations, and displays the removed values.
 
 ---
-
+## NAME : Shanmuga Vasanth M
+## REG NO: 212223040191
 ## 🎯 Aim
 
 To develop a Python program that implements a Circular Queue:
@@ -27,8 +28,48 @@ To develop a Python program that implements a Circular Queue:
 ---
 
 ## 💻 Program:
-Add Code Here
+~~~c
+class CircularQueue:
+    def __init__(self, size):
+        self.queue = [None] * size
+        self.size = size
+        self.front = self.rear = -1
+
+    def enqueue(self, value):
+        if (self.rear + 1) % self.size == self.front:
+            print("Queue is full!")
+            return
+        if self.front == -1:
+            self.front = self.rear = 0
+        else:
+            self.rear = (self.rear + 1) % self.size
+        self.queue[self.rear] = value
+    def dequeue(self):
+        if self.front == -1:
+            print("Queue is empty!")
+            return None
+        removed = self.queue[self.front]
+        if self.front == self.rear:
+            self.front = self.rear = -1
+        else:
+            self.front = (self.front + 1) % self.size
+        return removed
+cq = CircularQueue(3)
+print("Enter 3 values for the Circular Queue:")
+for i in range(3):
+    val = input(f"Enter value {i + 1}: ")
+    cq.enqueue(val)
+removed_values = []
+for _ in range(3):
+    removed = cq.dequeue()
+    if removed is not None:
+        removed_values.append(removed)
+print("\nRemoved values from the Circular Queue:")
+print(removed_values)
+~~~
 
 ### Output:
+![442495243-b9300e73-e6f1-4a9b-9299-5d83085177e4](https://github.com/user-attachments/assets/099e9be5-77d5-4c23-86e4-18e49ed6cc2e)
 
 ## Result:
+Thus the program has been executed successfully.
